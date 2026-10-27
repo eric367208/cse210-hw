@@ -1,0 +1,39 @@
+// The Reference class keeps track of the book, chapter, 
+// and verse(s) for a scripture and formats them for display.
+public class Reference
+{
+    private string _book;
+    private int _chapter;
+    private int _verse;
+    private int _endVerse; // Used if it's a range like 5-6
+
+    // Constructor for a single verse (e.g., Proverbs 6:27)
+    public Reference(string book, int chapter, int verse)
+    {
+        _book = book;
+        _chapter = chapter;
+        _verse = verse;
+        _endVerse = 0; // Indicates no end verse
+    }
+
+    // Constructor for a verse range (e.g., Proverbs 3:5-6)
+    public Reference(string book, int chapter, int startVerse, int endVerse)
+    {
+        _book = book;
+        _chapter = chapter;
+        _verse = startVerse;
+        _endVerse = endVerse;
+    }
+
+    public string GetDisplayText()
+    {
+        if (_endVerse == 0)
+        {
+            return $"{_book} {_chapter}:{_verse}";
+        }
+        else
+        {
+            return $"{_book} {_chapter}:{_verse}-{_endVerse}";
+        }
+    }
+}
